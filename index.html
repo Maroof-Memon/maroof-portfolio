@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,7 +26,7 @@
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#awards">Awards</a>
-      <a href="#contact" class="nav-cta">Contact</a>
+      <a href="#contact">Contact</a>
     </nav>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -34,52 +36,45 @@
 
 <main>
 
-<section class="hero" id="home">
-  <div class="container hero-inner">
-    <div class="hero-left reveal">
-      <p class="hero-badge">Open to opportunities — 2026</p>
-      <h1 class="hero-name">Maroof Ahmed <span class="grad-text">Memon</span></h1>
-      <p class="hero-role">I build <span id="typed" class="typed"></span><span class="cursor">|</span></p>
-      <p class="hero-sub">IT Graduate · Python Developer · Data Analytics &amp; Machine Learning. Turning raw data and clean interfaces into products people can actually use.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Get in touch</a>
-        <a href="#projects" class="btn btn-ghost">View projects</a>
-        <button class="btn btn-ghost" id="copyEmail" data-email="maroofmemon.it@gmail.com">Copy email</button>
+<!-- ===================== HOME ===================== -->
+<section class="page active" id="page-home">
+  <div class="hero">
+    <div class="container hero-inner">
+      <div class="hero-left reveal">
+        <p class="hero-badge">Open to opportunities — 2026</p>
+        <h1 class="hero-name">Maroof Ahmed <span class="grad-text">Memon</span></h1>
+        <p class="hero-role">I build <span id="typed" class="typed"></span><span class="cursor">|</span></p>
+        <p class="hero-sub">IT Graduate · Python Developer · Data Analytics &amp; Machine Learning. Turning raw data and clean interfaces into products people can actually use.</p>
+        <div class="hero-actions">
+          <a href="https://linkedin.com/in/maroof-memon-965939221" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+          <a href="https://github.com/Maroof-Memon" target="_blank" rel="noopener" class="btn btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
       </div>
-      <div class="hero-links">
-        <a href="mailto:maroofmemon.it@gmail.com">maroofmemon.it@gmail.com</a>
-        <span>·</span>
-        <a href="tel:+923366002681">+92 336 600 2681</a>
-        <span>·</span>
-        <a href="https://linkedin.com/in/maroof-memon-965939221" target="_blank" rel="noopener">LinkedIn</a>
-        <span>·</span>
-        <a href="https://github.com/Maroof-Memon" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
 
-    <div class="hero-stats reveal">
-      <div class="stat glass">
-        <span class="stat-num" data-count="3.46" data-decimals="2">0</span>
-        <span class="stat-label">CGPA / 4.00</span>
-      </div>
-      <div class="stat glass">
-        <span class="stat-num" data-count="1" data-suffix="+">0</span>
-        <span class="stat-label">Year experience</span>
-      </div>
-      <div class="stat glass">
-        <span class="stat-num" data-count="91" data-suffix="%">0</span>
-        <span class="stat-label">CNN accuracy</span>
-      </div>
-      <div class="stat glass">
-        <span class="stat-num" data-count="4">0</span>
-        <span class="stat-label">Featured projects</span>
+      <div class="hero-stats reveal">
+        <div class="stat glass">
+          <span class="stat-num" data-count="3.46" data-decimals="2">0</span>
+          <span class="stat-label">CGPA / 4.00</span>
+        </div>
+        <div class="stat glass">
+          <span class="stat-num" data-count="1" data-suffix="+">0</span>
+          <span class="stat-label">Year experience</span>
+        </div>
+        <div class="stat glass">
+          <span class="stat-num" data-count="91" data-suffix="%">0</span>
+          <span class="stat-label">CNN accuracy</span>
+        </div>
+        <div class="stat glass">
+          <span class="stat-num" data-count="4">0</span>
+          <span class="stat-label">Featured projects</span>
+        </div>
       </div>
     </div>
   </div>
-  <a href="#about" class="scroll-hint" aria-label="Scroll to about">↓</a>
 </section>
 
-<section id="about" class="section">
+<!-- ===================== ABOUT ===================== -->
+<section class="page" id="page-about">
   <div class="container">
     <p class="eyebrow reveal">01 — Profile</p>
     <h2 class="section-title reveal">About me</h2>
@@ -107,7 +102,8 @@
   </div>
 </section>
 
-<section id="skills" class="section">
+<!-- ===================== SKILLS ===================== -->
+<section class="page" id="page-skills">
   <div class="container">
     <p class="eyebrow reveal">02 — Toolkit</p>
     <h2 class="section-title reveal">Technical skills</h2>
@@ -148,7 +144,8 @@
   </div>
 </section>
 
-<section id="experience" class="section">
+<!-- ===================== EXPERIENCE ===================== -->
+<section class="page" id="page-experience">
   <div class="container">
     <p class="eyebrow reveal">03 — Career</p>
     <h2 class="section-title reveal">Experience</h2>
@@ -174,10 +171,12 @@
   </div>
 </section>
 
-<section id="projects" class="section">
+<!-- ===================== PROJECTS ===================== -->
+<section class="page" id="page-projects">
   <div class="container">
     <p class="eyebrow reveal">04 — Selected work</p>
     <h2 class="section-title reveal">Projects</h2>
+    <p class="section-lead reveal">Featured builds with interface screenshots, training results, and accuracy graphs.</p>
     <div class="projects-grid">
 
       <article class="glass card project project-wide reveal">
@@ -188,6 +187,13 @@
         <h3>DeepBird — AI-Driven Bird Sound Identification</h3>
         <p>Classifies audio recordings into bird-species categories using a deep-learning pipeline. Librosa converts audio into spectrogram representations, which a CNN learns to recognize. Trained on a dataset covering <strong>18 bird species</strong> with approximately <strong>91% classification accuracy</strong>, built with a three-member team with primary responsibility for CNN model training.</p>
         <ul class="chips tech"><li>Python</li><li>Librosa</li><li>TensorFlow</li><li>Keras</li><li>CNN</li></ul>
+        <div class="project-media gallery">
+          <img class="zoomable" src="Deepbird%20picture1.png" alt="DeepBird project interface" loading="lazy">
+          <img class="zoomable" src="Deepbird%20picture2.png" alt="DeepBird model results" loading="lazy">
+          <img class="zoomable" src="Deepbird%20picture3.png" alt="DeepBird accuracy graph" loading="lazy">
+          <img class="zoomable" src="Deepbird%20picture4.png" alt="DeepBird training output" loading="lazy">
+          <img class="zoomable" src="Deepbird%20picture5.png" alt="DeepBird score picture" loading="lazy">
+        </div>
       </article>
 
       <article class="glass card project reveal">
@@ -195,6 +201,9 @@
         <h3>Customer Churn Prediction</h3>
         <p>Machine-learning workflow to explore customer data and predict potential churn — EDA on feature distributions, preprocessing and feature engineering, then Scikit-learn classification models assessed for predictive performance.</p>
         <ul class="chips tech"><li>Python</li><li>Pandas</li><li>NumPy</li><li>Scikit-learn</li></ul>
+        <div class="project-media" data-fallback="Accuracy &amp; evaluation graph — add projects/churn.png">
+          <img src="projects/churn.png" alt="Customer churn accuracy graph" loading="lazy" onerror="this.closest('.project-media').classList.add('media-missing')">
+        </div>
       </article>
 
       <article class="glass card project reveal">
@@ -202,6 +211,9 @@
         <h3>Sales Forecasting &amp; Business Dashboard</h3>
         <p>Historical sales data explored for trends, a Scikit-learn forecasting workflow, and a Power BI dashboard that makes business performance easier to review — predictive analysis combined with visualization.</p>
         <ul class="chips tech"><li>Python</li><li>Scikit-learn</li><li>Power BI</li></ul>
+        <div class="project-media" data-fallback="Forecast &amp; dashboard graph — add projects/sales.png">
+          <img src="projects/sales.png" alt="Sales forecasting graph" loading="lazy" onerror="this.closest('.project-media').classList.add('media-missing')">
+        </div>
       </article>
 
       <article class="glass card project reveal">
@@ -209,82 +221,156 @@
         <h3>Employee Management REST API</h3>
         <p>Django REST Framework API with full CRUD operations, JSON-based request/response handling, endpoints tested in Postman and organised around standard REST principles.</p>
         <ul class="chips tech"><li>Python</li><li>Django REST</li><li>Postman</li></ul>
+        <div class="project-media" data-fallback="API testing screenshot — add projects/api.png">
+          <img src="projects/api.png" alt="REST API testing in Postman" loading="lazy" onerror="this.closest('.project-media').classList.add('media-missing')">
+        </div>
       </article>
 
     </div>
   </div>
 </section>
 
-<section id="awards" class="section">
+<!-- ===================== AWARDS ===================== -->
+<section class="page" id="page-awards">
   <div class="container">
     <p class="eyebrow reveal">05 — Recognition</p>
-    <h2 class="section-title reveal">Competitions &amp; awards</h2>
+    <h2 class="section-title reveal">International Awards</h2>
+    <p class="section-lead reveal">Competitions and hackathons where I collaborated with international teams, built solutions under time pressure, and presented my work to the jury.</p>
+
     <div class="awards-grid">
       <div class="glass card award award-highlight reveal">
-        <span class="award-icon">🏆</span>
-        <h3>DeepBird Project</h3>
-        <p>Second position — recognition for the AI-driven bird sound identification project.</p>
+        <i class="fa-solid fa-trophy award-icon"></i>
+        <h3>DeepBird Project — 2nd Position</h3>
+        <p>Worked in a three-member team to build DeepBird end to end. My responsibility was training the CNN model — preparing spectrograms with Librosa, feeding 18 bird species through the network, and tuning it to roughly 91% accuracy. We then presented the finished system to the jury with a live walkthrough of the model's results.</p>
       </div>
+
       <div class="glass card award reveal">
-        <span class="award-icon">◈</span>
-        <h3>NanotechX</h3>
-        <p>Participated in the technology-focused event.</p>
-      </div>
-      <div class="glass card award reveal">
-        <span class="award-icon">⚡</span>
+        <i class="fa-solid fa-globe award-icon"></i>
         <h3>Hackmakers World Innovation Day Hack 2022</h3>
-        <p>Participated in the innovation hackathon.</p>
+        <p>Collaborated with an international team of developers during a worldwide innovation hackathon. Worked across different time zones, shared ideas, split the tasks, and prepared a presentation of our solution for the judging panel — a real lesson in cross-border teamwork and communication.</p>
       </div>
+
       <div class="glass card award reveal">
-        <span class="award-icon">◇</span>
+        <i class="fa-solid fa-flag-checkered award-icon"></i>
         <h3>Hackmakers FormulaAI Hack 2022</h3>
-        <p>Participated in the FormulaAI hackathon.</p>
+        <p>Joined participants from around the world in the FormulaAI hackathon. With a diverse team I researched the problem, prototyped an AI-based solution, and presented it under a tight deadline — strengthening my skills in teamwork, presentations, and delivering when the clock is running.</p>
       </div>
+
       <div class="glass card award reveal">
-        <span class="award-icon">∑</span>
+        <i class="fa-solid fa-code award-icon"></i>
         <h3>Meta Hacker Cup 2023</h3>
-        <p>Participated in the competitive programming competition.</p>
+        <p>Competed in Meta's global programming contest, solving real-world problems built around data structures and algorithms. The competition sharpened my problem-solving approach, logical thinking, and ability to write efficient solutions under time pressure.</p>
+      </div>
+
+      <div class="glass card award reveal">
+        <i class="fa-solid fa-atom award-icon"></i>
+        <h3>NanotechX</h3>
+        <p>Participated in the NanotechX technology event, engaging with emerging tech topics and connecting with peers and industry professionals from different backgrounds.</p>
+      </div>
+    </div>
+
+    <h3 class="subsection-title reveal">Certificates</h3>
+    <div class="cert-grid">
+      <a class="glass card cert reveal" href="WorldInnovationDay%20Hack%202022.pdf" target="_blank" rel="noopener">
+        <i class="fa-solid fa-file-pdf"></i>
+        <span class="cert-title">World Innovation Day Hack 2022</span>
+        <span class="cert-link">View certificate <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+      </a>
+      <a class="glass card cert reveal" href="FormulaAI%20Hack%202022.pdf" target="_blank" rel="noopener">
+        <i class="fa-solid fa-file-pdf"></i>
+        <span class="cert-title">FormulaAI Hack 2022</span>
+        <span class="cert-link">View certificate <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+      </a>
+      <a class="glass card cert reveal" href="Meta%20Hackers%20Certificate.pdf" target="_blank" rel="noopener">
+        <i class="fa-solid fa-file-pdf"></i>
+        <span class="cert-title">Meta Hacker Cup 2023</span>
+        <span class="cert-link">View certificate <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+      </a>
+      <div class="glass card cert reveal">
+        <img class="zoomable" src="Participant%20Certificate%20Maroof%20Memon.jpg" alt="Participant certificate of Maroof Memon" loading="lazy">
+        <span class="cert-title">Certificate of Participation</span>
       </div>
     </div>
   </div>
 </section>
 
-<section id="contact" class="section contact">
+<!-- ===================== CONTACT ===================== -->
+<section class="page" id="page-contact">
   <div class="container">
     <p class="eyebrow reveal">06 — Contact</p>
-    <h2 class="section-title reveal">Let's build something</h2>
-    <p class="contact-lead reveal">Available for roles and collaborations in Python development, data analytics, and machine learning.</p>
-    <div class="contact-grid reveal">
-      <a class="glass card contact-card" href="mailto:maroofmemon.it@gmail.com">
-        <span class="contact-label">Email</span>
-        <span class="contact-value">maroofmemon.it@gmail.com</span>
-      </a>
-      <a class="glass card contact-card" href="tel:+923366002681">
-        <span class="contact-label">Phone</span>
-        <span class="contact-value">+92 336 600 2681</span>
-      </a>
-      <a class="glass card contact-card" href="https://linkedin.com/in/maroof-memon-965939221" target="_blank" rel="noopener">
-        <span class="contact-label">LinkedIn</span>
-        <span class="contact-value">maroof-memon</span>
-      </a>
-      <a class="glass card contact-card" href="https://github.com/Maroof-Memon" target="_blank" rel="noopener">
-        <span class="contact-label">GitHub</span>
-        <span class="contact-value">Maroof-Memon</span>
-      </a>
+    <h2 class="section-title reveal">Contact me</h2>
+    <p class="section-lead reveal">Write your name and message — it goes straight to my inbox and I will reply as soon as I can.</p>
+
+    <div class="row g-4 contact-row reveal">
+      <div class="col-lg-7">
+        <div class="glass card">
+          <h3><i class="fa-solid fa-message"></i> Send a message</h3>
+          <form id="contactForm" action="https://formsubmit.co/maroofmemon.it@gmail.com" method="POST">
+            <div class="field">
+              <label for="cf-name">Your name</label>
+              <input id="cf-name" name="name" type="text" required placeholder="Your full name" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="cf-email">Your email</label>
+              <input id="cf-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" rows="5" required placeholder="Write your message here…"></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="New message from your portfolio">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" class="d-none" tabindex="-1" autocomplete="off">
+            <button type="submit" class="btn btn-primary" id="cf-submit">
+              <i class="fa-solid fa-paper-plane"></i> Send message
+            </button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="d-flex flex-column gap-4">
+          <div class="glass card">
+            <h3>Connect directly</h3>
+            <p class="side-text">Prefer a professional profile first? Find me on LinkedIn or browse my code on GitHub.</p>
+            <div class="hero-actions side-actions">
+              <a href="https://linkedin.com/in/maroof-memon-965939221" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+              <a href="https://github.com/Maroof-Memon" target="_blank" rel="noopener" class="btn btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+          <div class="glass card">
+            <h3>What I'm open to</h3>
+            <p class="side-text">Roles and collaborations in Python development, data analytics, machine learning, and front-end web development.</p>
+            <ul class="chips"><li>Python</li><li>Data Analytics</li><li>Machine Learning</li><li>Web Development</li></ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="footer">
+<footer class="footer" id="footer">
   <div class="container footer-inner">
-    <p>© <span id="year"></span> Maroof Ahmed Memon</p>
-    <a href="#home">Back to top ↑</a>
+    <span class="footer-copy">© <span id="year"></span> Maroof Ahmed Memon</span>
+    <div class="footer-contact">
+      <a href="mailto:maroofmemon.it@gmail.com"><i class="fa-solid fa-envelope"></i><span>maroofmemon.it@gmail.com</span></a>
+      <span class="footer-phone"><i class="fa-solid fa-phone"></i><span>+92 xxx xxxxxx</span></span>
+      <a href="https://linkedin.com/in/maroof-memon-965939221" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/Maroof-Memon" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    </div>
   </div>
 </footer>
 
-<div class="toast" id="toast">Email copied to clipboard</div>
+<div class="toast" id="toast"></div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close preview"><i class="fa-solid fa-xmark"></i></button>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <script src="script.js"></script>
 </body>
