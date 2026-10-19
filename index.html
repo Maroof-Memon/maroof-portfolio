@@ -19,14 +19,17 @@
 
 <header class="nav" id="nav">
   <div class="container nav-inner">
-    <a href="#home" class="logo">MA<span class="logo-dot">.</span></a>
+    <a href="#home" class="logo" aria-label="Home — Maroof Ahmed Memon">
+      <img class="logo-pic" src="Logo%20Pic.png" alt="Maroof Ahmed Memon logo">
+      MA<span class="logo-dot">.</span>
+    </a>
     <nav class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#awards">Awards</a>
-      <a href="#contact">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -37,7 +40,7 @@
 <main>
 
 <!-- ===================== HOME ===================== -->
-<section class="page active" id="page-home">
+<section id="home">
   <div class="hero">
     <div class="container hero-inner">
       <div class="hero-left reveal">
@@ -51,30 +54,37 @@
         </div>
       </div>
 
-      <div class="hero-stats reveal">
-        <div class="stat glass">
-          <span class="stat-num" data-count="3.46" data-decimals="2">0</span>
-          <span class="stat-label">CGPA / 4.00</span>
-        </div>
-        <div class="stat glass">
-          <span class="stat-num" data-count="1" data-suffix="+">0</span>
-          <span class="stat-label">Year experience</span>
-        </div>
-        <div class="stat glass">
-          <span class="stat-num" data-count="91" data-suffix="%">0</span>
-          <span class="stat-label">CNN accuracy</span>
-        </div>
-        <div class="stat glass">
-          <span class="stat-num" data-count="4">0</span>
-          <span class="stat-label">Featured projects</span>
-        </div>
+      <div class="hero-photo reveal">
+        <figure class="photo-frame glass">
+          <img class="zoomable" src="Main%20Photo.png" alt="Portrait of Maroof Ahmed Memon">
+          <figcaption class="photo-tag"><span class="photo-dot"></span> Python Developer</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero-stats reveal">
+      <div class="stat glass">
+        <span class="stat-num" data-count="3.46" data-decimals="2">0</span>
+        <span class="stat-label">CGPA / 4.00</span>
+      </div>
+      <div class="stat glass">
+        <span class="stat-num" data-count="1" data-suffix="+">0</span>
+        <span class="stat-label">Year experience</span>
+      </div>
+      <div class="stat glass">
+        <span class="stat-num" data-count="4">0</span>
+        <span class="stat-label">Featured projects</span>
       </div>
     </div>
   </div>
 </section>
 
+<div class="section-divider" aria-hidden="true"></div>
+
 <!-- ===================== ABOUT ===================== -->
-<section class="page" id="page-about">
+<section class="section" id="about">
   <div class="container">
     <p class="eyebrow reveal">01 — Profile</p>
     <h2 class="section-title reveal">About me</h2>
@@ -102,8 +112,10 @@
   </div>
 </section>
 
+<div class="section-divider" aria-hidden="true"></div>
+
 <!-- ===================== SKILLS ===================== -->
-<section class="page" id="page-skills">
+<section class="section" id="skills">
   <div class="container">
     <p class="eyebrow reveal">02 — Toolkit</p>
     <h2 class="section-title reveal">Technical skills</h2>
@@ -144,8 +156,10 @@
   </div>
 </section>
 
+<div class="section-divider" aria-hidden="true"></div>
+
 <!-- ===================== EXPERIENCE ===================== -->
-<section class="page" id="page-experience">
+<section class="section" id="experience">
   <div class="container">
     <p class="eyebrow reveal">03 — Career</p>
     <h2 class="section-title reveal">Experience</h2>
@@ -171,8 +185,10 @@
   </div>
 </section>
 
+<div class="section-divider" aria-hidden="true"></div>
+
 <!-- ===================== PROJECTS ===================== -->
-<section class="page" id="page-projects">
+<section class="section" id="projects">
   <div class="container">
     <p class="eyebrow reveal">04 — Selected work</p>
     <h2 class="section-title reveal">Projects</h2>
@@ -230,8 +246,10 @@
   </div>
 </section>
 
+<div class="section-divider" aria-hidden="true"></div>
+
 <!-- ===================== AWARDS ===================== -->
-<section class="page" id="page-awards">
+<section class="section" id="awards">
   <div class="container">
     <p class="eyebrow reveal">05 — Recognition</p>
     <h2 class="section-title reveal">International Awards</h2>
@@ -289,63 +307,6 @@
       <div class="glass card cert reveal">
         <img class="zoomable" src="Participant%20Certificate%20Maroof%20Memon.jpg" alt="Participant certificate of Maroof Memon" loading="lazy">
         <span class="cert-title">Certificate of Participation</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== CONTACT ===================== -->
-<section class="page" id="page-contact">
-  <div class="container">
-    <p class="eyebrow reveal">06 — Contact</p>
-    <h2 class="section-title reveal">Contact me</h2>
-    <p class="section-lead reveal">Write your name and message — it goes straight to my inbox and I will reply as soon as I can.</p>
-
-    <div class="row g-4 contact-row reveal">
-      <div class="col-lg-7">
-        <div class="glass card">
-          <h3><i class="fa-solid fa-message"></i> Send a message</h3>
-          <form id="contactForm" action="https://formsubmit.co/maroofmemon.it@gmail.com" method="POST">
-            <div class="field">
-              <label for="cf-name">Your name</label>
-              <input id="cf-name" name="name" type="text" required placeholder="Your full name" autocomplete="name">
-            </div>
-            <div class="field">
-              <label for="cf-email">Your email</label>
-              <input id="cf-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
-            </div>
-            <div class="field">
-              <label for="cf-message">Message</label>
-              <textarea id="cf-message" name="message" rows="5" required placeholder="Write your message here…"></textarea>
-            </div>
-            <input type="hidden" name="_subject" value="New message from your portfolio">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="text" name="_honey" class="d-none" tabindex="-1" autocomplete="off">
-            <button type="submit" class="btn btn-primary" id="cf-submit">
-              <i class="fa-solid fa-paper-plane"></i> Send message
-            </button>
-            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-          </form>
-        </div>
-      </div>
-
-      <div class="col-lg-5">
-        <div class="d-flex flex-column gap-4">
-          <div class="glass card">
-            <h3>Connect directly</h3>
-            <p class="side-text">Prefer a professional profile first? Find me on LinkedIn or browse my code on GitHub.</p>
-            <div class="hero-actions side-actions">
-              <a href="https://linkedin.com/in/maroof-memon-965939221" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
-              <a href="https://github.com/Maroof-Memon" target="_blank" rel="noopener" class="btn btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
-            </div>
-          </div>
-          <div class="glass card">
-            <h3>What I'm open to</h3>
-            <p class="side-text">Roles and collaborations in Python development, data analytics, machine learning, and front-end web development.</p>
-            <ul class="chips"><li>Python</li><li>Data Analytics</li><li>Machine Learning</li><li>Web Development</li></ul>
-          </div>
-        </div>
       </div>
     </div>
   </div>

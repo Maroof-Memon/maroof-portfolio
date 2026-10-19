@@ -3,7 +3,6 @@ const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 const toast = document.getElementById("toast");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const pages = Array.from(document.querySelectorAll(".page"));
 const navAnchors = Array.from(navLinks.querySelectorAll("a"));
 
 document.getElementById("year").textContent = new Date().getFullYear();
@@ -24,30 +23,53 @@ const closeMenu = () => {
   menuToggle.setAttribute("aria-expanded", "false");
 };
 
-navAnchors.forEach((link) => link.addEventListener("click", closeMenu));
+/* ---------- Smooth in-page navigation ---------- */
+navAnchors.forEach((link) =>
+  link.addEventListener("click", (e) => {
+    const href = link.getAttribute("href") || "";
+    if (href.startsWith("#")) {
+      const target = document.getElementById(href.slice(1));
+      if (target) {
+        e.preventDefault();
+        try {
+          history.replaceState(null, "", href);
+        } catch {
+          location.hash = href;
+        }
+        target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+      }
+    }
+    closeMenu();
+  })
+);
 
-/* ---------- Page router ---------- */
-function route() {
-  let id = (location.hash || "#home").replace(/^#\/?/, "");
-  if (!pages.some((p) => p.id === "page-" + id)) id = "home";
-
-  pages.forEach((p) => p.classList.toggle("active", p.id === "page-" + id));
-  navAnchors.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
-  closeMenu();
+if (location.hash) {
+  const initial = document.getElementById(location.hash.slice(1));
+  if (initial) requestAnimationFrame(() => initial.scrollIntoView({ behavior: "auto", block: "start" }));
 }
 
-function forceTop() {
-  const prev = document.documentElement.style.scrollBehavior;
-  document.documentElement.style.scrollBehavior = "auto";
-  window.scrollTo(0, 0);
-  document.documentElement.style.scrollBehavior = prev;
-}
+/* ---------- Scroll spy: highlight the section in view ---------- */
+const spySections = navAnchors
+  .map((a) => a.getAttribute("href"))
+  .filter((h) => h && h.startsWith("#"))
+  .map((h) => document.getElementById(h.slice(1)))
+  .filter(Boolean);
 
-window.addEventListener("hashchange", () => {
-  route();
-  forceTop();
-});
-route();
+if ("IntersectionObserver" in window && spySections.length) {
+  const spyObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navAnchors.forEach((a) =>
+            a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id)
+          );
+        }
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+  );
+  spySections.forEach((s) => spyObserver.observe(s));
+}
 
 /* ---------- Reveal on scroll ---------- */
 const revealItems = document.querySelectorAll(".reveal");
@@ -156,85 +178,90 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 const lightboxClose = document.getElementById("lightboxClose");
 
-document.querySelectorAll(".zoomable").forEach((img) => {
-  img.addEventListener("click", () => {
-    lightboxImg.src = img.currentSrc || img.src;
-    lightboxImg.alt = img.alt;
-    lightbox.classList.add("open");
+if (lightbox && lightboxImg && lightboxClose) {
+  document.querySelectorAll(".zoomable").forEach((img) => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add("open");
+    });
   });
-});
 
-const closeLightbox = () => {
-  lightbox.classList.remove("open");
-  lightboxImg.src = "";
-};
+  const closeLightbox = () => {
+    lightbox.classList.remove("open");
+    lightboxImg.src = "";
+  };
 
-lightboxClose.addEventListener("click", closeLightbox);
-lightbox.addEventListener("click", (e) => {
-  if (e.target === lightbox) closeLightbox();
-});
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeLightbox();
-});
+  lightboxClose.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+  });
+}
 
 /* ---------- Contact form (FormSubmit → email) ---------- */
 const form = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
 const submitBtn = document.getElementById("cf-submit");
-const submitIcon = submitBtn.innerHTML;
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+if (form && formStatus && submitBtn) {
+  const submitIcon = submitBtn.innerHTML;
 
-  if (location.protocol === "file:") {
-    formStatus.textContent =
-      "This page is opened as a local file, so the form cannot send. Run a web server in this folder (python -m http.server 8000) and open http://localhost:8000 — or deploy the site online.";
-    formStatus.classList.add("err");
-    showToast("Forms need a web server — not file://");
-    return;
-  }
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending…';
-  formStatus.textContent = "";
-  formStatus.className = "form-status";
-
-  try {
-    const endpoint = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
-    const res = await fetch(endpoint, {
-      method: "POST",
-      headers: { "X-Requested-With": "XMLHttpRequest" },
-      body: new FormData(form),
-    });
-
-    let data;
-    try {
-      data = await res.json();
-    } catch {
-      throw new Error("Server returned an unexpected response (HTTP " + res.status + ").");
-    }
-
-    if (data.success === true || data.success === "true") {
-      formStatus.textContent = "Message sent! I will get back to you soon.";
-      formStatus.classList.add("ok");
-      showToast("Message sent — thank you!");
-      form.reset();
-    } else {
+    if (location.protocol === "file:") {
       formStatus.textContent =
-        (data.message || "Send failed.") +
-        " — first submission may need activation: open the confirmation email FormSubmit sends to maroofmemon.it@gmail.com and click the activation link.";
+        "This page is opened as a local file, so the form cannot send. Run a web server in this folder (python -m http.server 8000) and open http://localhost:8000 — or deploy the site online.";
       formStatus.classList.add("err");
-      showToast("Message not sent yet — check the note below.");
+      showToast("Forms need a web server — not file://");
+      return;
     }
-  } catch (err) {
-    formStatus.textContent =
-      "Could not send right now (" +
-      (err && err.message ? err.message : "network error") +
-      ") — please email maroofmemon.it@gmail.com directly.";
-    formStatus.classList.add("err");
-    showToast("Something went wrong — please try again.");
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = submitIcon;
-  }
-});
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending…';
+    formStatus.textContent = "";
+    formStatus.className = "form-status";
+
+    try {
+      const endpoint = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        body: new FormData(form),
+      });
+
+      let data;
+      try {
+        data = await res.json();
+      } catch {
+        throw new Error("Server returned an unexpected response (HTTP " + res.status + ").");
+      }
+
+      if (data.success === true || data.success === "true") {
+        formStatus.textContent = "Message sent! I will get back to you soon.";
+        formStatus.classList.add("ok");
+        showToast("Message sent — thank you!");
+        form.reset();
+      } else {
+        formStatus.textContent =
+          (data.message || "Send failed.") +
+          " — first submission may need activation: open the confirmation email FormSubmit sends to maroofmemon.it@gmail.com and click the activation link.";
+        formStatus.classList.add("err");
+        showToast("Message not sent yet — check the note below.");
+      }
+    } catch (err) {
+      formStatus.textContent =
+        "Could not send right now (" +
+        (err && err.message ? err.message : "network error") +
+        ") — please email maroofmemon.it@gmail.com directly.";
+      formStatus.classList.add("err");
+      showToast("Something went wrong — please try again.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = submitIcon;
+    }
+  });
+}

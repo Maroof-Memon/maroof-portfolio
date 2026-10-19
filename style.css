@@ -108,7 +108,22 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom-color: var(--stroke);
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
-.logo { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; color: var(--text); letter-spacing: -0.02em; }
+.logo { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; color: var(--text); letter-spacing: -0.02em; display: inline-flex; align-items: center; gap: 10px; }
+.logo-pic {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  box-shadow: 0 0 14px rgba(34, 211, 238, 0.28);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.logo:hover .logo-pic {
+  transform: scale(1.08);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+}
 .logo-dot { color: var(--accent); }
 .nav-links { display: flex; align-items: center; gap: 26px; }
 .nav-links a {
@@ -135,10 +150,18 @@ h1, h2, h3, h4, h5, h6 {
 .menu-toggle.open span:nth-child(2) { opacity: 0; }
 .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ---------- Pages ---------- */
-.page { display: none; padding: 126px 0 70px; }
-.page.active { display: block; animation: pageIn 0.5s ease both; }
-#page-home { padding: 0; }
+/* ---------- Sections (single scrollable page) ---------- */
+.section { padding: 96px 0; }
+#home { padding: 0; }
+.section-page-top { padding-top: 126px; }
+
+.section-divider {
+  width: min(1160px, 92%);
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.5), transparent);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.28);
+}
 
 @keyframes pageIn {
   from { opacity: 0; transform: translateY(18px); }
@@ -146,7 +169,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ---------- Hero ---------- */
-.hero { min-height: calc(100svh - var(--footer-h)); display: flex; align-items: center; position: relative; padding: 130px 0 70px; }
+.hero { min-height: calc(92svh - var(--footer-h)); display: flex; align-items: center; position: relative; padding: 130px 0 48px; }
 .hero-inner { display: grid; grid-template-columns: 1.25fr 0.85fr; gap: 56px; align-items: center; }
 
 .hero-badge {
@@ -206,12 +229,36 @@ h1, h2, h3, h4, h5, h6 {
 .btn:disabled { opacity: 0.55; cursor: wait; transform: none; }
 .btn:focus-visible, .btn:focus { box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.4); }
 
-.hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-.stat { padding: 24px 22px; text-align: left; }
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 56px;
+}
+.stat {
+  padding: 28px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.stat::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 18%; right: 18%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.75;
+}
+.stat:hover {
+  transform: translateY(-5px);
+  border-color: rgba(34, 211, 238, 0.45);
+  box-shadow: 0 24px 54px rgba(34, 211, 238, 0.12);
+}
 .stat-num {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
   font-weight: 800;
   background: linear-gradient(92deg, var(--accent-bright), var(--accent-deep));
   -webkit-background-clip: text;
@@ -219,7 +266,71 @@ h1, h2, h3, h4, h5, h6 {
   color: transparent;
   line-height: 1.1;
 }
-.stat-label { font-size: 0.83rem; color: var(--muted); letter-spacing: 0.04em; }
+.stat-label { display: block; margin-top: 6px; font-size: 0.83rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; font-family: var(--font-mono); }
+
+/* ---------- Hero photo ---------- */
+.hero-photo { display: flex; justify-content: center; }
+.photo-frame {
+  position: relative;
+  padding: 12px;
+  border-radius: 30px;
+  max-width: 360px;
+  width: 100%;
+}
+.photo-frame img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  border-radius: 22px;
+  border: 1px solid var(--stroke);
+  background: var(--bg-2);
+  cursor: zoom-in;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+.photo-frame:hover img { transform: translateY(-4px); border-color: rgba(34, 211, 238, 0.5); }
+.photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 30px;
+  padding: 1.5px;
+  background: linear-gradient(150deg, rgba(34, 211, 238, 0.85), transparent 45%, rgba(8, 145, 178, 0.55));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.photo-tag {
+  position: absolute;
+  left: 50%;
+  bottom: -16px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  background: rgba(11, 16, 32, 0.92);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  border-radius: 999px;
+  padding: 8px 14px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+.photo-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  animation: blink 1.4s ease-in-out infinite;
+}
 
 /* ---------- Sections ---------- */
 .eyebrow {
@@ -570,7 +681,8 @@ h1, h2, h3, h4, h5, h6 {
   .menu-toggle { display: flex; }
 
   .projects-grid, .skills-grid, .awards-grid, .cert-grid, .hero-stats, .gallery { grid-template-columns: 1fr; }
-  .page { padding: 108px 0 56px; }
+  .section { padding: 68px 0; }
+  .section-page-top { padding-top: 108px; }
   .card { padding: 22px; }
   .timeline { padding-left: 24px; }
 
