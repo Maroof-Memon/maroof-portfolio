@@ -139,9 +139,9 @@ const roles = [
 ];
 const typedEl = document.getElementById("typed");
 
-if (reducedMotion) {
+if (typedEl && reducedMotion) {
   typedEl.textContent = roles[0];
-} else {
+} else if (typedEl) {
   let roleIndex = 0;
   let charIndex = 0;
   let deleting = false;
