@@ -208,6 +208,7 @@ const submitBtn = document.getElementById("cf-submit");
 
 if (form && formStatus && submitBtn) {
   const submitIcon = submitBtn.innerHTML;
+  const nextInput = document.getElementById("cf-next");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -219,6 +220,8 @@ if (form && formStatus && submitBtn) {
       showToast("Forms need a web server — not file://");
       return;
     }
+
+    if (nextInput) nextInput.value = location.href;
 
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending…';
@@ -241,9 +244,9 @@ if (form && formStatus && submitBtn) {
       }
 
       if (data.success === true || data.success === "true") {
-        formStatus.textContent = "Message sent! I will get back to you soon.";
+        formStatus.textContent = "Your message has been sent. We will connect with you in a short time.";
         formStatus.classList.add("ok");
-        showToast("Message sent — thank you!");
+        showToast("Your message has been sent!");
         form.reset();
       } else {
         formStatus.textContent =
