@@ -209,25 +209,118 @@ const submitBtn = document.getElementById("cf-submit");
 if (form && formStatus && submitBtn) {
   const submitIcon = submitBtn.innerHTML;
   const nextInput = document.getElementById("cf-next");
+  const frame = document.getElementById("cf-frame");
+  const fileInput = document.getElementById("cf-file");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    if (location.protocol === "file:") {
-      formStatus.textContent =
-        "This page is opened as a local file, so the form cannot send. Run a web server in this folder (python -m http.server 8000) and open http://localhost:8000 — or deploy the site online.";
-      formStatus.classList.add("err");
-      showToast("Forms need a web server — not file://");
-      return;
-    }
-
-    if (nextInput) nextInput.value = location.href;
-
+  const setStatus = (text, ok) => {
+    formStatus.textContent = text;
+    formStatus.className = "form-status" + (ok === null || ok === undefined ? "" : ok ? " ok" : " err");
+  };
+  const setSending = () => {
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending…';
     formStatus.textContent = "";
     formStatus.className = "form-status";
+  };
+  const restoreBtn = () => {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = submitIcon;
+  };
+  const showSuccess = () => {
+    setStatus("Your message has been sent. We will connect with you in a short time.", true);
+    showToast("Your message has been sent!");
+    form.reset();
+    restoreBtn();
+  };
+  const showFailure = (msg) => {
+    setStatus(msg || "Could not send right now — please email maroofmemon.it@gmail.com directly.", false);
+    showToast("Something went wrong — please try again.");
+    restoreBtn();
+  };
 
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (location.protocol === "file:") {
+      setStatus(
+        "This page is opened as a local file, so the form cannot send. Run a web server in this folder (python -m http.server 8000) and open http://localhost:8000 — or deploy the site online.",
+        false
+      );
+      showToast("Forms need a web server — not file://");
+      return;
+    }
+
+    const files = fileInput && fileInput.files ? fileInput.files : [];
+    let totalSize = 0;
+    for (let i = 0; i < files.length; i++) totalSize += files[i].size;
+
+    if (totalSize > 10 * 1024 * 1024) {
+      setStatus("Your files are too large — the combined size must be 10 MB or less.", false);
+      showToast("Attachments must be 10 MB or less in total.");
+      return;
+    }
+
+    setSending();
+
+    if (files.length > 0) {
+      sendWithFiles();
+    } else {
+      sendWithoutFiles();
+    }
+  });
+
+  const sendWithFiles = () => {
+    if (nextInput) nextInput.value = new URL("thanks.html", location.href).href;
+
+    let settled = false;
+    let grace = null;
+
+    const cleanup = () => {
+      clearTimeout(slowMsg);
+      clearTimeout(hardStop);
+      if (grace) clearTimeout(grace);
+      frame.removeEventListener("load", onLoad);
+    };
+
+    const slowMsg = setTimeout(() => {
+      if (!settled)
+        setStatus("Still sending your files — attachments can take up to a minute. Please keep this tab open.", null);
+    }, 45000);
+
+    const hardStop = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      showFailure("Sending is taking too long — please try again or email maroofmemon.it@gmail.com directly.");
+    }, 240000);
+
+    const onLoad = () => {
+      if (settled) return;
+      let href = "";
+      try {
+        href = frame.contentWindow.location.href;
+      } catch {
+        href = "";
+      }
+      if (href.indexOf(location.origin) === 0) {
+        settled = true;
+        cleanup();
+        showSuccess();
+      } else if (!grace) {
+        grace = setTimeout(() => {
+          if (settled) return;
+          settled = true;
+          cleanup();
+          showFailure();
+        }, 10000);
+      }
+    };
+
+    frame.addEventListener("load", onLoad);
+    form.submit();
+  };
+
+  const sendWithoutFiles = async () => {
     try {
       const endpoint = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
       const res = await fetch(endpoint, {
@@ -244,27 +337,22 @@ if (form && formStatus && submitBtn) {
       }
 
       if (data.success === true || data.success === "true") {
-        formStatus.textContent = "Your message has been sent. We will connect with you in a short time.";
-        formStatus.classList.add("ok");
-        showToast("Your message has been sent!");
-        form.reset();
+        showSuccess();
       } else {
-        formStatus.textContent =
+        setStatus(
           (data.message || "Send failed.") +
-          " — first submission may need activation: open the confirmation email FormSubmit sends to maroofmemon.it@gmail.com and click the activation link.";
-        formStatus.classList.add("err");
+            " — first submission may need activation: open the confirmation email FormSubmit sends to maroofmemon.it@gmail.com and click the activation link.",
+          false
+        );
         showToast("Message not sent yet — check the note below.");
+        restoreBtn();
       }
     } catch (err) {
-      formStatus.textContent =
+      showFailure(
         "Could not send right now (" +
-        (err && err.message ? err.message : "network error") +
-        ") — please email maroofmemon.it@gmail.com directly.";
-      formStatus.classList.add("err");
-      showToast("Something went wrong — please try again.");
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = submitIcon;
+          (err && err.message ? err.message : "network error") +
+          ") — please email maroofmemon.it@gmail.com directly."
+      );
     }
-  });
+  };
 }

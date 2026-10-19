@@ -522,6 +522,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ---------- Contact ---------- */
 .d-none { display: none !important; }
+#cf-frame { display: none; border: 0; width: 100%; }
 .contact-row { align-items: stretch; }
 .side-text { color: var(--muted); font-size: 0.95rem; }
 .side-actions { margin-top: 20px; }
