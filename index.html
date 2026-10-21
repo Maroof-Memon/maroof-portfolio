@@ -92,6 +92,16 @@
       <div class="glass card about-main reveal">
         <p>Information Technology graduate with a <strong>CGPA of 3.46/4.00</strong> and one year of professional experience in front-end web development. Familiar with Python programming, data analysis, machine learning fundamentals, SQL databases, REST APIs, and responsive web development.</p>
         <p>Hands-on project experience includes bird sound classification using convolutional neural networks, customer churn prediction, sales forecasting, business dashboards, and REST API development. Interested in applying software development and analytical skills to practical technology problems while continuing to strengthen expertise in Python, data analytics, and artificial intelligence.</p>
+
+        <div class="intro-block">
+          <div class="intro-info">
+            <h3>Watch My Introduction</h3>
+            <p>60-second video introducing my background, experience, and career goals.</p>
+          </div>
+          <button class="btn btn-primary intro-btn" id="introBtn" type="button" aria-haspopup="dialog">
+            <i class="fa-solid fa-play"></i> Watch My Introduction
+          </button>
+        </div>
       </div>
       <div class="about-side">
         <div class="glass card reveal">
@@ -337,6 +347,25 @@
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
   <button class="lightbox-close" id="lightboxClose" aria-label="Close preview"><i class="fa-solid fa-xmark"></i></button>
   <img id="lightboxImg" src="" alt="">
+</div>
+
+<div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+  <div class="video-modal-card">
+    <div class="video-modal-head">
+      <h3 id="videoModalTitle"><i class="fa-solid fa-circle-play"></i> My Introduction</h3>
+      <button class="video-modal-close" id="videoModalClose" type="button" aria-label="Close video"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="video-stage">
+      <video id="introVideo" playsinline preload="metadata" controls>
+        <source src="Introduction.mp4" type="video/mp4">
+        Your browser does not support embedded video. <a href="Introduction.mp4" download>Download the video instead.</a>
+      </video>
+      <button class="video-big-play" id="videoBigPlay" type="button" aria-label="Play introduction video">
+        <i class="fa-solid fa-play"></i>
+      </button>
+    </div>
+    <p class="video-modal-note"><i class="fa-regular fa-clock"></i> 60-second introduction — background, experience, and career goals.</p>
+  </div>
 </div>
 
 <script src="script.js"></script>

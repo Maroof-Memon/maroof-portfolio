@@ -375,6 +375,155 @@ h1, h2, h3, h4, h5, h6 {
 .edu-meta { color: var(--accent); font-size: 0.9rem; margin-top: 4px; }
 .edu-areas { color: var(--muted); font-size: 0.88rem; margin-top: 12px; border-top: 1px solid var(--stroke); padding-top: 12px; }
 
+/* ---------- Intro video (About) ---------- */
+.intro-block {
+  margin-top: 26px;
+  padding-top: 24px;
+  border-top: 1px solid var(--stroke);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.intro-info { flex: 1 1 260px; min-width: 0; }
+.card .intro-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--text);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card .intro-info h3::before {
+  content: "\f03d";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+.card .intro-info p { color: var(--muted); font-size: 0.92rem; margin: 0; }
+.intro-btn { flex: 0 0 auto; white-space: nowrap; }
+.intro-btn .fa-play { font-size: 0.85em; }
+
+/* ---------- Video modal ---------- */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 320;
+  background: rgba(4, 6, 12, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 4vh 4vw;
+}
+.video-modal.open { display: flex; animation: pageIn 0.3s ease both; }
+.video-modal-card {
+  width: min(900px, 100%);
+  max-height: 94vh;
+  overflow-y: auto;
+  padding: 18px 18px 16px;
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgba(17, 25, 46, 0.97), rgba(7, 10, 18, 0.98));
+  border: 1px solid var(--stroke);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65);
+}
+.video-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.video-modal-head h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.video-modal-head h3 i { color: var(--accent); }
+.video-modal-close {
+  font-size: 1.4rem;
+  background: none;
+  border: 1px solid var(--stroke);
+  color: var(--text);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.video-modal-close:hover { color: var(--accent); border-color: rgba(34, 211, 238, 0.6); transform: scale(1.06); }
+.video-modal-close:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.4); }
+
+.video-stage {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--stroke);
+  width: 100%;
+  max-width: min(100%, calc(70vh * var(--video-ar, 0.5625)));
+  aspect-ratio: var(--video-ar, 0.5625);
+  margin-inline: auto;
+}
+.video-stage video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  object-fit: contain;
+}
+.video-big-play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 1px solid rgba(34, 211, 238, 0.6);
+  background: rgba(7, 10, 18, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--accent);
+  font-size: 1.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease;
+}
+.video-big-play i { margin-left: 5px; }
+.video-big-play:hover { transform: scale(1.08); background: rgba(34, 211, 238, 0.2); }
+.video-big-play:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.4); }
+.video-stage.playing .video-big-play { opacity: 0; pointer-events: none; }
+.video-modal-note {
+  margin: 14px 2px 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.video-modal-note i { color: var(--accent); }
+
 /* ---------- Skills ---------- */
 .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -707,6 +856,11 @@ h1, h2, h3, h4, h5, h6 {
   .section-page-top { padding-top: 108px; }
   .card { padding: 22px; }
   .timeline { padding-left: 24px; }
+  .intro-block { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .intro-btn { width: 100%; }
+  .video-modal { padding: 3vh 3vw; }
+  .video-modal-card { padding: 14px; border-radius: 20px; }
+  .video-big-play { width: 64px; height: 64px; font-size: 1.5rem; }
 
   .footer-contact a span,
   .footer-contact .footer-phone span { display: none; }

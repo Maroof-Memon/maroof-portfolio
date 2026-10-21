@@ -201,6 +201,79 @@ if (lightbox && lightboxImg && lightboxClose) {
   });
 }
 
+/* ---------- Introduction video modal (plays inline, same page) ---------- */
+const videoModal = document.getElementById("videoModal");
+const videoModalClose = document.getElementById("videoModalClose");
+const introBtn = document.getElementById("introBtn");
+const introVideo = document.getElementById("introVideo");
+const videoBigPlay = document.getElementById("videoBigPlay");
+const videoStage = introVideo ? introVideo.parentElement : null;
+
+if (videoModal && introVideo && introBtn) {
+  let lastFocused = null;
+
+  const safePlay = () => {
+    const attempt = introVideo.play();
+    if (attempt && typeof attempt.catch === "function") attempt.catch(() => {});
+  };
+
+  const openModal = () => {
+    lastFocused = document.activeElement;
+    videoModal.classList.add("open");
+    document.body.style.overflow = "hidden";
+    if (videoModalClose) videoModalClose.focus();
+    safePlay();
+  };
+
+  const closeModal = () => {
+    videoModal.classList.remove("open");
+    document.body.style.overflow = "";
+    introVideo.pause();
+    try {
+      introVideo.currentTime = 0;
+    } catch {
+      /* metadata not loaded yet — nothing to reset */
+    }
+    if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+  };
+
+  introBtn.addEventListener("click", openModal);
+
+  if (videoModalClose) videoModalClose.addEventListener("click", closeModal);
+
+  videoModal.addEventListener("click", (e) => {
+    if (e.target === videoModal) closeModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && videoModal.classList.contains("open")) closeModal();
+  });
+
+  if (videoBigPlay) {
+    videoBigPlay.addEventListener("click", () => {
+      if (introVideo.paused) safePlay();
+      else introVideo.pause();
+    });
+  }
+
+  if (videoStage) {
+    const syncPlayState = () => {
+      videoStage.classList.toggle("playing", !introVideo.paused && !introVideo.ended);
+    };
+    introVideo.addEventListener("play", syncPlayState);
+    introVideo.addEventListener("pause", syncPlayState);
+    introVideo.addEventListener("ended", syncPlayState);
+
+    const syncRatio = () => {
+      if (introVideo.videoWidth && introVideo.videoHeight) {
+        videoStage.style.setProperty("--video-ar", (introVideo.videoWidth / introVideo.videoHeight).toFixed(4));
+      }
+    };
+    introVideo.addEventListener("loadedmetadata", syncRatio);
+    if (introVideo.readyState >= 1) syncRatio();
+  }
+}
+
 /* ---------- Contact form (FormSubmit → email) ---------- */
 const form = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
