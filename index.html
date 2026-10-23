@@ -222,19 +222,20 @@
         </div>
       </article>
 
-      <article class="glass card project reveal">
+      <article class="glass card project project-wide reveal">
         <div class="project-top"><span class="project-index">02</span></div>
         <h3>Customer Churn Prediction</h3>
-        <p>Machine-learning workflow to explore customer data and predict potential churn — EDA on feature distributions, preprocessing and feature engineering, then Scikit-learn classification models assessed for predictive performance.</p>
-        <ul class="chips tech"><li>Python</li><li>Pandas</li><li>NumPy</li><li>Scikit-learn</li></ul>
-        <!-- Project image — uncomment when ready:
-        <div class="project-media" data-fallback="Accuracy &amp; evaluation graph — add projects/churn.png">
-          <img src="projects/churn.png" alt="Customer churn accuracy graph" loading="lazy" onerror="this.closest('.project-media').classList.add('media-missing')">
+        <p>End-to-end Scikit-learn workflow on the IBM Telco churn dataset — 7,043 customers profiled through EDA, feature engineering, and preprocessing pipelines, then benchmarked across classification models. XGBoost leads at <strong>0.849 ROC-AUC</strong>, with SHAP explainability and a live inference dashboard for at-risk customers.</p>
+        <ul class="chips tech"><li>Python</li><li>Pandas</li><li>Scikit-learn</li><li>XGBoost</li><li>SHAP</li></ul>
+        <div class="project-media gallery churn-gallery">
+          <img class="zoomable" src="projects/churn-eda.png" alt="Customer churn EDA dashboard with cohort metrics and churn charts" loading="lazy">
+          <img class="zoomable" src="projects/churn-benchmark.png" alt="Churn model benchmark table, ROC curve, and confusion matrix" loading="lazy">
+          <img class="zoomable" src="projects/churn-shap.png" alt="SHAP feature importance chart explaining churn drivers" loading="lazy">
+          <img class="zoomable" src="projects/churn-inference.png" alt="Live customer churn inference dashboard with risk factors" loading="lazy">
         </div>
-        -->
       </article>
 
-      <article class="glass card project reveal">
+      <article class="glass card project project-half reveal">
         <div class="project-top"><span class="project-index">03</span></div>
         <h3>Sales Forecasting &amp; Business Dashboard</h3>
         <p>Historical sales data explored for trends, a Scikit-learn forecasting workflow, and a Power BI dashboard that makes business performance easier to review — predictive analysis combined with visualization.</p>
@@ -246,7 +247,7 @@
         -->
       </article>
 
-      <article class="glass card project reveal">
+      <article class="glass card project project-half reveal">
         <div class="project-top"><span class="project-index">04</span></div>
         <h3>Employee Management REST API</h3>
         <p>Django REST Framework API with full CRUD operations, JSON-based request/response handling, endpoints tested in Postman and organised around standard REST principles.</p>

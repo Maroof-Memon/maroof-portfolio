@@ -578,8 +578,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ---------- Projects ---------- */
-.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.projects-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px; align-items: start; }
+.project { grid-column: span 2; }
 .project-wide { grid-column: 1 / -1; }
+.project-half { grid-column: span 3; }
 .project-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 .project-index { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
 .project-award {
@@ -614,6 +616,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .gallery img { aspect-ratio: 16 / 10; }
+.churn-gallery { grid-template-columns: repeat(4, 1fr); }
 
 .project-media.media-missing img { display: none; }
 .project-media.media-missing {
@@ -817,6 +820,8 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .project, .project-half { grid-column: auto; }
+  .project-wide { grid-column: 1 / -1; }
   .cert-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -851,7 +856,7 @@ h1, h2, h3, h4, h5, h6 {
   .nav-links a::after { display: none; }
   .menu-toggle { display: flex; }
 
-  .projects-grid, .skills-grid, .awards-grid, .cert-grid, .hero-stats, .gallery { grid-template-columns: 1fr; }
+  .projects-grid, .skills-grid, .awards-grid, .cert-grid, .hero-stats, .gallery, .churn-gallery { grid-template-columns: 1fr; }
   .section { padding: 68px 0; }
   .section-page-top { padding-top: 108px; }
   .card { padding: 22px; }
