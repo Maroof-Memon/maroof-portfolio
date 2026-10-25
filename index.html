@@ -227,7 +227,7 @@
         <h3>Customer Churn Prediction</h3>
         <p>End-to-end Scikit-learn workflow on the IBM Telco churn dataset — 7,043 customers profiled through EDA, feature engineering, and preprocessing pipelines, then benchmarked across classification models. XGBoost leads at <strong>0.849 ROC-AUC</strong>, with SHAP explainability and a live inference dashboard for at-risk customers.</p>
         <ul class="chips tech"><li>Python</li><li>Pandas</li><li>Scikit-learn</li><li>XGBoost</li><li>SHAP</li></ul>
-        <div class="project-media gallery churn-gallery">
+        <div class="project-media gallery">
           <img class="zoomable" src="projects/churn-eda.png" alt="Customer churn EDA dashboard with cohort metrics and churn charts" loading="lazy">
           <img class="zoomable" src="projects/churn-benchmark.png" alt="Churn model benchmark table, ROC curve, and confusion matrix" loading="lazy">
           <img class="zoomable" src="projects/churn-shap.png" alt="SHAP feature importance chart explaining churn drivers" loading="lazy">
@@ -235,16 +235,17 @@
         </div>
       </article>
 
-      <article class="glass card project project-half reveal">
+      <article class="glass card project project-wide reveal">
         <div class="project-top"><span class="project-index">03</span></div>
         <h3>Sales Forecasting &amp; Business Dashboard</h3>
-        <p>Historical sales data explored for trends, a Scikit-learn forecasting workflow, and a Power BI dashboard that makes business performance easier to review — predictive analysis combined with visualization.</p>
-        <ul class="chips tech"><li>Python</li><li>Scikit-learn</li><li>Power BI</li></ul>
-        <!-- Project image — uncomment when ready:
-        <div class="project-media" data-fallback="Forecast &amp; dashboard graph — add projects/sales.png">
-          <img src="projects/sales.png" alt="Sales forecasting graph" loading="lazy" onerror="this.closest('.project-media').classList.add('media-missing')">
+        <p>An end-to-end Flask sales analytics dashboard that turns historical order data into KPIs, monthly trend and category charts, and a three-month Scikit-learn forecast. Built with chronological train/test splitting to prevent data leakage, holdout MAE/RMSE/R² reporting, CSV upload with graceful handling of optional columns, and live conversion across <strong>7 currencies</strong> (PKR, USD, EUR, GBP, INR, AED, SAR). The responsive front end is powered by vanilla JavaScript and Chart.js.</p>
+        <ul class="chips tech"><li>Python</li><li>Flask</li><li>Pandas</li><li>Scikit-learn</li><li>Chart.js</li><li>JavaScript</li></ul>
+        <div class="project-media gallery">
+          <img class="zoomable" src="projects/sales-overview.png" alt="Sales forecasting dashboard overview with live exchange rates and KPI cards" loading="lazy">
+          <img class="zoomable" src="projects/sales-charts.png" alt="Monthly sales trend line chart and sales by category bar chart" loading="lazy">
+          <img class="zoomable" src="projects/sales-forecast.png" alt="Three-month Scikit-learn sales forecast with model evaluation metrics" loading="lazy">
+          <img class="zoomable" src="projects/sales-table.png" alt="Historical sales transactions table with search and currency conversion" loading="lazy">
         </div>
-        -->
       </article>
 
       <article class="glass card project project-half reveal">
