@@ -44,10 +44,10 @@
   <div class="hero">
     <div class="container hero-inner">
       <div class="hero-left reveal">
-        <p class="hero-badge">Open to opportunities — 2026</p>
+        
         <h1 class="hero-name">Maroof Ahmed <span class="grad-text">Memon</span></h1>
         <p class="hero-role">I build <span id="typed" class="typed"></span><span class="cursor">|</span></p>
-        <p class="hero-sub">IT Graduate · Python Developer · Data Analytics &amp; Machine Learning. Turning raw data and clean interfaces into products people can actually use.</p>
+        <p class="hero-sub">AI Engineer | Building Intelligent Solutions with Python and Machine Learning.</p>
         <div class="hero-actions">
           <a href="https://linkedin.com/in/maroof-memon-965939221" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
           <a href="https://github.com/Maroof-Memon" target="_blank" rel="noopener" class="btn btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
@@ -57,7 +57,7 @@
       <div class="hero-photo reveal">
         <figure class="photo-frame glass">
           <img class="zoomable" src="Logo%20Pic.png" alt="Portrait of Maroof Ahmed Memon">
-          <figcaption class="photo-tag"><span class="photo-dot"></span> Python Developer</figcaption>
+          <figcaption class="photo-tag"><span class="photo-dot"></span> AI Engineer</figcaption>
         </figure>
       </div>
     </div>
@@ -132,31 +132,31 @@
     <div class="skills-grid">
       <div class="glass card skill-card reveal">
         <h3>Programming</h3>
-        <ul class="chips"><li>Python</li><li>SQL</li><li>JavaScript</li></ul>
-      </div>
-      <div class="glass card skill-card reveal">
-        <h3>Data Analysis</h3>
-        <ul class="chips"><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>EDA</li><li>Data Preprocessing</li></ul>
+        <ul class="chips"><li>Python</li></ul>
       </div>
       <div class="glass card skill-card reveal">
         <h3>Machine Learning</h3>
-        <ul class="chips"><li>Scikit-learn</li><li>Classification</li><li>Feature Engineering</li><li>Model Evaluation</li></ul>
+        <ul class="chips"><li>Scikit-learn</li><li>Classification</li><li>Model Training and Evaluation</li></ul>
       </div>
       <div class="glass card skill-card reveal">
-        <h3>Deep Learning &amp; Audio</h3>
-        <ul class="chips"><li>TensorFlow</li><li>Keras</li><li>Librosa</li><li>CNNs</li><li>Spectrograms</li></ul>
+        <h3>Deep Learning</h3>
+        <ul class="chips"><li>TensorFlow</li><li>Keras</li><li>Convolutional Neural Networks (CNNs)</li></ul>
       </div>
       <div class="glass card skill-card reveal">
-        <h3>Databases</h3>
-        <ul class="chips"><li>Oracle SQL</li><li>MySQL</li></ul>
+        <h3>Audio Processing</h3>
+        <ul class="chips"><li>Librosa</li><li>Spectrogram Generation</li></ul>
       </div>
       <div class="glass card skill-card reveal">
-        <h3>Visualization</h3>
-        <ul class="chips"><li>Power BI</li><li>Dashboard Development</li></ul>
+        <h3>Data Processing</h3>
+        <ul class="chips"><li>Pandas</li><li>NumPy</li><li>Data Preprocessing</li></ul>
       </div>
       <div class="glass card skill-card reveal">
-        <h3>Web Development</h3>
-        <ul class="chips"><li>HTML</li><li>CSS</li><li>Django</li><li>REST APIs</li></ul>
+        <h3>Tools &amp; Technologies</h3>
+        <ul class="chips"><li>Git</li><li>GitHub</li><li>Jupyter Notebook</li><li>VS Code</li></ul>
+      </div>
+      <div class="glass card skill-card reveal">
+        <h3>APIs &amp; Backend</h3>
+        <ul class="chips"><li>REST APIs</li><li>LLM API Integration</li><li>Postman</li></ul>
       </div>
       <div class="glass card skill-card reveal">
         <h3>Tools</h3>
@@ -222,16 +222,17 @@
         </div>
       </article>
 
-      <article class="glass card project project-wide reveal">
+            <article class="glass card project project-wide reveal">
         <div class="project-top"><span class="project-index">02</span></div>
         <h3>Customer Churn Prediction</h3>
-        <p>End-to-end Scikit-learn workflow on the IBM Telco churn dataset — 7,043 customers profiled through EDA, feature engineering, and preprocessing pipelines, then benchmarked across classification models. XGBoost leads at <strong>0.849 ROC-AUC</strong>, with SHAP explainability and a live inference dashboard for at-risk customers.</p>
-        <ul class="chips tech"><li>Python</li><li>Pandas</li><li>Scikit-learn</li><li>XGBoost</li><li>SHAP</li></ul>
+        <p>End-to-end Flask web app for customer churn prediction. Upload any CSV or use the bundled sample, train Logistic Regression and Random Forest with leakage-safe preprocessing (fitted on 80% training split), compare on Accuracy/Precision/Recall/F1 with confusion matrices, auto-select the best model, view feature importance, and run real-time predictions with dynamic forms.</p>
+        <ul class="chips tech"><li>Python</li><li>Flask</li><li>Pandas</li><li>Scikit-learn</li><li>Chart.js</li><li>JavaScript</li><li>HTML</li><li>CSS</li></ul>
         <div class="project-media gallery">
-          <img class="zoomable" src="projects/churn-eda.png" alt="Customer churn EDA dashboard with cohort metrics and churn charts" loading="lazy">
-          <img class="zoomable" src="projects/churn-benchmark.png" alt="Churn model benchmark table, ROC curve, and confusion matrix" loading="lazy">
-          <img class="zoomable" src="projects/churn-shap.png" alt="SHAP feature importance chart explaining churn drivers" loading="lazy">
-          <img class="zoomable" src="projects/churn-inference.png" alt="Live customer churn inference dashboard with risk factors" loading="lazy">
+          <img class="zoomable" src="projects/churn-flask-overview.png" alt="Customer Churn Prediction Flask app overview" loading="lazy">
+          <img class="zoomable" src="projects/churn-flask-upload-sample.png" alt="Customer Churn Prediction with sample data" loading="lazy">
+          <img class="zoomable" src="projects/churn-flask-eval.png" alt="Customer Churn Prediction model evaluation" loading="lazy">
+          <img class="zoomable" src="projects/churn-flask-predict.png" alt="Customer Churn Prediction real-time inference" loading="lazy">
+          <img class="zoomable" src="projects/churn-flask-features.png" alt="Customer Churn Prediction feature importance" loading="lazy">
         </div>
       </article>
 
