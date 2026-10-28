@@ -392,39 +392,31 @@ if (form && formStatus && submitBtn) {
     form.submit();
   };
 
-  const sendWithoutFiles = async () => {
+  const sendWithoutFiles = () => {
     try {
-      const endpoint = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-        body: new FormData(form),
-      });
-
-      let data;
-      try {
-        data = await res.json();
-      } catch {
-        throw new Error("Server returned an unexpected response (HTTP " + res.status + ").");
-      }
-
-      if (data.success === true || data.success === "true") {
-        showSuccess();
-      } else {
-        setStatus(
-          (data.message || "Send failed.") +
-            " — first submission may need activation: open the confirmation email FormSubmit sends to maroofmemon.it@gmail.com and click the activation link.",
-          false
-        );
-        showToast("Message not sent yet — check the note below.");
+      if (nextInput) nextInput.value = new URL("thanks.html", location.href).href;
+      let settled = false;
+      const cleanup = () => {
+        frame.removeEventListener("load", onLoad);
+      };
+      const hardStop = setTimeout(() => {
+        if (settled) return;
+        settled = true;
+        cleanup();
         restoreBtn();
-      }
+        setStatus("If nothing happened, please check your email for FormSubmit activation or email maroofmemon.it@gmail.com directly.", false);
+      }, 15000);
+      const onLoad = () => {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        clearTimeout(hardStop);
+        showSuccess();
+      };
+      frame.addEventListener("load", onLoad);
+      form.submit();
     } catch (err) {
-      showFailure(
-        "Could not send right now (" +
-          (err && err.message ? err.message : "network error") +
-          ") — please email maroofmemon.it@gmail.com directly."
-      );
+      showFailure("Could not send right now — please email maroofmemon.it@gmail.com directly.");
     }
   };
 }
