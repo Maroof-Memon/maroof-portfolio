@@ -51,7 +51,7 @@
       <div class="col-lg-7">
         <div class="glass card">
           <h3><i class="fa-solid fa-message"></i> Send a message</h3>
-          <form id="contactForm" action="https://formsubmit.co/maroofmemon.it@gmail.com" method="POST" enctype="multipart/form-data" target="cf-frame">
+          <form id="contactForm" action="https://formsubmit.co/maroofmemon.it@gmail.com" method="POST">
             <div class="field">
               <label for="cf-name">Your name</label>
               <input id="cf-name" name="name" type="text" required placeholder="Your full name" autocomplete="name">
@@ -64,11 +64,6 @@
               <label for="cf-message">Message</label>
               <textarea id="cf-message" name="message" rows="5" required placeholder="Write your message here…"></textarea>
             </div>
-            <div class="field">
-              <label for="cf-file"><i class="fa-solid fa-paperclip"></i> Attach files (optional)</label>
-              <input id="cf-file" name="attachment" type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.gif,.webp,image/*,application/pdf">
-              <small class="field-hint">PDF or image files (JPG, PNG, GIF, WebP) — up to 10 MB total. Files arrive as attachments in my email.</small>
-            </div>
             <input type="hidden" name="_subject" value="New message from your portfolio">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
@@ -79,7 +74,6 @@
             </button>
             <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
           </form>
-          <iframe id="cf-frame" name="cf-frame" title="Message sending" loading="eager"></iframe>
         </div>
       </div>
 
