@@ -334,7 +334,11 @@ if (form && formStatus && submitBtn) {
     }
 
     setSending();
-    sendWithoutFiles();
+    if (files.length > 0) {
+      sendWithFiles();
+    } else {
+      sendWithoutFiles();
+    }
   });
 
   const sendWithFiles = () => {
